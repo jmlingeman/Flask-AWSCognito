@@ -81,8 +81,8 @@ class AWSCognitoAuthentication:
         expected_state = get_state(self.user_pool_id, self.user_pool_client_id)
         if state != expected_state:
             raise FlaskAWSCognitoError("State for CSRF is not correct ")
-        access_token = self.cognito_service.exchange_code_for_token(code)
-        return access_token
+        access_token, refresh_token = self.cognito_service.exchange_code_for_token(code)
+        return access_token, refresh_token
 
     def get_user_info(self, access_token):
         return self.cognito_service.get_user_info(access_token)

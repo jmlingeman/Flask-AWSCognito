@@ -65,7 +65,8 @@ class CognitoService:
                 f"no access token returned for code {response_json}"
             )
         access_token = response_json["access_token"]
-        return access_token
+        refresh_token = response_json["access_token"]
+        return access_token, refresh_token
 
     def get_user_info(self, access_token, requests_client=None):
         user_url = f"{self.domain}/oauth2/userInfo"
