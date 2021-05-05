@@ -39,6 +39,7 @@ class CognitoService:
 
     def exchange_code_for_token(self, code, requests_client=None):
         token_url = f"{self.domain}/oauth2/token"
+        print("GETTING CODE FOR TOKEN")
         data = {
             "code": code,
             "redirect_uri": self.redirect_url,
